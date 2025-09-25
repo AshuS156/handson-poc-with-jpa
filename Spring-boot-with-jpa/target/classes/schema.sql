@@ -1,0 +1,1 @@
+create table COURSE(id bigInt primary key, name varchar(255) , author varchar(255));
