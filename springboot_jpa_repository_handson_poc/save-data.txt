@@ -1,0 +1,46 @@
+{
+"name" : "Kamesh Rao",
+"city": "Bangalore",
+"status":"Active"
+}
+
+
+{
+"name" : "Prakash Kumar",
+"city": "USA",
+"status":"Active"
+}
+
+
+{
+"name" : "Tapas Kumar",
+"city": "USA",
+"status":"Active"
+}
+
+
+{
+"name" : "Neetika",
+"city": "Bangalore",
+"status":"Inactive"
+}
+
+
+{
+"name" : "Sandhya Rani",
+"city": "Hydrabad",
+"status":"Active"
+}
+
+{
+"name" : "Karan Sharma",
+"city": "Bangalore",
+"status":"Inactive"
+}
+
+
+{
+"name" : "Sai Kumar",
+"city": "Bangalore",
+"status":"Active"
+}

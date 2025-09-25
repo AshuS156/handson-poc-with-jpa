@@ -20,23 +20,48 @@ public class PersonController{
     }
 
     @GetMapping("/person/{id}")
-    public ResponseEntity<Person> getPerson(@PathVariable Long id){
-        Person person = personService.getPerson(id);
+    public ResponseEntity<Person> getPersonById(@PathVariable Long id){
+        Person person = personService.getPersonById(id);
         if(person == null){
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok(person);
     }
 
-    @DeleteMapping("/person/delete/{id}")
-    public ResponseEntity<Void> deletePerson(@PathVariable Long id){
-        personService.deletePerson(id);
-        return ResponseEntity.noContent().build();
+    @GetMapping("/person/QueryMethod/{partialName}")
+    public ResponseEntity<Person> getPersonByPartialName(@PathVariable String partialName){
+        Person person = personService.getPersonByPartialNameUsingQueryMethod(partialName);
+        if(person == null){
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(person);
     }
 
-    @GetMapping("/person/{page}/{size}")
-    public ResponseEntity<?> getPersonUsingPaginationAndSorting(@PathVariable int page, @PathVariable int size){
-        final Page<Person> personUsingPagination = personService.getPersonUsingPagination(page,size);
-        return ResponseEntity.ok().body(personUsingPagination);
+    @GetMapping("/person/QueryAnnotation/{partialName}")
+    public ResponseEntity<Person> getPersonByPartialNameUsingQueryAnnotation(@PathVariable String partialName){
+        Person person = personService.getPersonByPartialNameUsingQueryAnnotation(partialName);
+        if(person == null){
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(person);
     }
+
+    @GetMapping("/person/{name}/{city}")
+    public ResponseEntity<Person> getPersonByMultipleParameter(@PathVariable String name, @PathVariable String city){
+        Person person = personService.getPersonByNameAndCity(name, city);
+        if(person == null){
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(person);
+    }
+
+    @GetMapping("/person")
+    public ResponseEntity<?> getPersonByMultipleParameter(@RequestParam(value = "page") int page , @RequestParam(value = "size") int size ){
+        final Page<Person> persons = personService.getPersons(page,size);
+        if(persons == null){
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(persons);
+    }
+
 }
